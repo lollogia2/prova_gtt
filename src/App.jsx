@@ -6,7 +6,10 @@ import TimeCard from "./components/TimeCard.jsx";
 const App = () => {
     const [busStation, setBusStation] = useState('');
     const [btn594, setBtn594] = useState(false);
+    const [btn3287, setBtn3287] = useState(false);
+    const [btn3286, setBtn3286] = useState(false);
     const [btn648, setBtn648] = useState(false);
+    const [btn629, setBtn629] = useState(false);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -44,16 +47,28 @@ const App = () => {
         <main className={"font-sans"}>
             <header className={"static inset-x-0 top-0 h-16"}>
                 <h1 className={"font-semibold tracking-wide"}>Pitti<span className="text-gradient">BUS</span></h1>
-                <img src="/bus-school.png" className={"object-scale-down max-h-full drop-shadow-md rounded-md m-auto"}
-                     alt="Bus Banner"/>
+                <img src="/bus-school.png"
+                     className={"object-scale-down max-h-full drop-shadow-md rounded-md m-auto cursor-pointer"}
+                     alt="Bus Banner" onClick={() => {
+                    setBtn648(false);
+                    setBtn594(false);
+                    setBtn3287(false);
+                    setBtn3286(false);
+                    setBtn629(false);
+                    setData(null);
+                }}/>
 
             </header>
-            <section>
-                <div className="grid h-48 grid-cols-2 gap-4 mt-10 place-content-center">
+            <section className={"static mt-25"}>
+                <div className="grid h-48 grid-cols-3 gap-4  place-content-center">
+                    <div className="text-gradient font-bold">Dante di Nanni</div>
                     <button onClick={() => {
                         setBusStation('594');
                         setBtn594(true);
                         setBtn648(false);
+                        setBtn3287(false);
+                        setBtn3286(false);
+                        setBtn629(false);
                     }} disabled={loading || btn594}>594
                     </button>
 
@@ -61,11 +76,41 @@ const App = () => {
                         setBusStation('648');
                         setBtn648(true);
                         setBtn594(false);
+                        setBtn3287(false);
+                        setBtn3286(false);
+                        setBtn629(false);
                     }} disabled={loading || btn648}>648
                     </button>
-
+                    <div className="text-gradient font-bold">Vittorio Emanuele II</div>
+                    <button onClick={() => {
+                        setBusStation('3287');
+                        setBtn3287(true);
+                        setBtn594(false);
+                        setBtn3286(false);
+                        setBtn629(false);
+                        setBtn648(false);
+                    }} disabled={loading || btn3287}>3287
+                    </button>
+                    <button onClick={() => {
+                        setBusStation('3286');
+                        setBtn3286(true);
+                        setBtn594(false);
+                        setBtn3287(false);
+                        setBtn629(false);
+                        setBtn648(false);
+                    }} disabled={loading || btn3286}>3286
+                    </button>
+                    <div className="text-gradient font-bold">Valentino</div>
+                    <button onClick={() => {
+                        setBusStation('629');
+                        setBtn629(true);
+                        setBtn3287(false);
+                        setBtn594(false);
+                        setBtn3286(false);
+                    }} disabled={loading || btn629}>629
+                    </button>
                 </div>
-                <div className="relative">
+                <div className="static mt-10">
                     {data ? (
                         <ul>
                             {data.map((bus, index) => (
@@ -73,7 +118,7 @@ const App = () => {
                             ))}
                         </ul>
                     ) : (
-                        <div>vuoto</div>
+                        <div className="italic">Corri alla fermata!</div>
                     )}
                 </div>
             </section>
