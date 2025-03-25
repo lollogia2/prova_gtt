@@ -18,7 +18,7 @@ const App = () => {
         setError(null); // Resetta gli errori precedenti
         try {
             if (busStation !== '') {
-                const endpoint = `http://gpa.madbob.org/query.php?stop=${encodeURIComponent(busStation)}`;
+                const endpoint = `https://gpa.madbob.org/query.php?stop=${encodeURIComponent(busStation)}`;
                 const response = await fetch(endpoint);
                 console.log('awawa');
                 // 3. Gestione errori HTTP
